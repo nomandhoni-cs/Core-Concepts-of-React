@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const friendsList = ['Sabbir', 'Shuvo', 'Mridul', 'Hasan', 'Hossain', 'Faysal'];
 const products = [
@@ -13,11 +13,11 @@ const products = [
   {name: 'Figma', price: '$24.99'}
 ];
 const productNames = products.map(product => product.name);
-console.log(productNames);
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Users></Users>
         <Counter></Counter>
         <ul>
           {
@@ -39,6 +39,28 @@ function App() {
     </div>
   );
 }
+
+// Fetch data from JSONplaceholder5
+function Users(){
+ const [users, setUsers] = useState([]);
+ useEffect(() => {
+  const url = 'https://jsonplaceholder.typicode.com/users';
+  fetch(url)
+  .then(res => res.json())
+  // Set all data in setUsers 
+  .then(data => setUsers(data))
+ })
+  return (
+    <div>
+      <h1>Users List</h1>
+      {
+        users.map(user => <li>{user.name}</li>)
+      }
+    </div>
+  )
+}
+
+// Counter
 function Counter() {
   const [count, setCount] = useState(10);
   const handleDecrease = () => setCount(count - 1);
@@ -50,6 +72,7 @@ function Counter() {
     </div>
   )
 }
+// Product component start
 function Product(props) {
   const style = {
     backgroundColor: 'lightgray',
@@ -63,6 +86,7 @@ function Product(props) {
     color: 'black',
     margin: '10px'
   }
+  // Button Css
   const btnStyle ={
     width: '90px',
     backgroundColor: 'blue',
