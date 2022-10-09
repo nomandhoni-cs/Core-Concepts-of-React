@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { useState } from "react";
 
 const friendsList = ['Sabbir', 'Shuvo', 'Mridul', 'Hasan', 'Hossain', 'Faysal'];
 const products = [
@@ -11,13 +12,21 @@ const products = [
   {name: 'Access', price: '$244.99'},
   {name: 'Figma', price: '$24.99'}
 ];
+const productNames = products.map(product => product.name);
+console.log(productNames);
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Counter></Counter>
         <ul>
           {
               friendsList.map(friend => <li>{friend}</li>)
+          }
+        </ul>
+        <ul>
+          {
+            productNames.map(pd => <li>{pd}</li>)
           }
         </ul>
         {
@@ -29,6 +38,17 @@ function App() {
       </header>
     </div>
   );
+}
+function Counter() {
+  const [count, setCount] = useState(10);
+  const handleDecrease = () => setCount(count - 1);
+  return (
+    <div>
+      <button onClick={handleDecrease}>Decrease</button>
+      <h1>Count: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+    </div>
+  )
 }
 function Product(props) {
   const style = {
