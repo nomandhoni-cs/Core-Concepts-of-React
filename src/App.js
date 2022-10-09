@@ -1,22 +1,31 @@
 import logo from "./logo.svg";
 import "./App.css";
 
+const friendsList = ['Sabbir', 'Shuvo', 'Mridul', 'Hasan', 'Hossain', 'Faysal'];
 const products = [
   {name: 'Photoshop', price: '$44.99'},
   {name: 'PDF Reader', price: '$4.99'},
+  {name: 'Premier Pro', price: '$4.99'},
+  {name: 'Illustrator', price: '$4.99'},
+  {name: 'Adobe XD', price: '$4.99'},
+  {name: 'Access', price: '$244.99'},
   {name: 'Figma', price: '$24.99'}
-]
-const productNames = products.map(product => product.name);
-console.log(productNames);
-
+];
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Product name={products[0].name} price={products[0].price}></Product>
+        <ul>
+          {
+              friendsList.map(friend => <li>{friend}</li>)
+          }
+        </ul>
+        {
+          products.map(pd => <Product name={pd.name} price={pd.price}></Product>)
+        }
+        {/* <Product name={products[0].name} price={products[0].price}></Product>
         <Product name={products[1].name}price={products[1].price}>></Product>
-        <Product name={products[2].name}price={products[2].price}>></Product>
-                
+        <Product name={products[2].name}price={products[2].price}>></Product> */}         
       </header>
     </div>
   );
@@ -29,14 +38,25 @@ function Product(props) {
     borderRadius: '7px',
     width: '200px',
     height:'200px',
-    float: 'left',
-    display: 'inlineBlock'
+    float: 'right',
+    display: 'block',
+    color: 'black',
+    margin: '10px'
+  }
+  const btnStyle ={
+    width: '90px',
+    backgroundColor: 'blue',
+    border: '1px solid blue',
+    borderRadius: '15px',
+    color: 'white',
+    fontSize: '22px',
+    cursor: 'pointer'
   }
   return (
     <div style={style}>
       <h4>{props.name}</h4>
       <h3>{props.price}</h3>
-      <button>Buy</button>
+      <button style={btnStyle}>Buy</button>
     </div>
   )
 }
