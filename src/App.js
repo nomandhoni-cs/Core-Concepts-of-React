@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const friendsList = ['Sabbir', 'Shuvo', 'Mridul', 'Hasan', 'Hossain', 'Faysal'];
 const products = [
@@ -19,6 +19,8 @@ function App() {
       <header className="App-header">
         <Clock locale="bn-BD"></Clock>
         <Clock locale="en-UK"></Clock>
+        <ClockDisplay locale="bn-BD"></ClockDisplay>  
+        <ClockDisplay locale="en-US"></ClockDisplay>  
         <Users></Users>
         <Counter></Counter>
         <ul>
@@ -36,12 +38,22 @@ function App() {
         }
         {/* <Product name={products[0].name} price={products[0].price}></Product>
         <Product name={products[1].name}price={products[1].price}>></Product>
-        <Product name={products[2].name}price={products[2].price}>></Product> */}         
+        <Product name={products[2].name}price={products[2].price}>></Product> */}       
       </header>
     </div>
   );
 }
 
+// You only can use 'this' in the class component
+// This represent the whole object which react render
+// Clock By Class component
+class ClockDisplay extends React.Component{
+  render() {
+    return (
+      <h2>The Time is <span>{new Date().toLocaleTimeString(this.props.locale)}</span></h2>
+    )
+  }
+}
 
 //Props is basically an object , when we compile this component it creates an object
 // In that object will look like below
@@ -53,9 +65,10 @@ function App() {
 //   }, // In props will create more method of object if you set them in the render area
 // }
 
+
+// You only can use 'props' in the class component
 //Clock Component
 function Clock (props){
-  console.log(new Date().toLocaleTimeString());
   return (
     <div>
       <h2>Time is: {new Date().toLocaleTimeString(props.locale)}</h2>
