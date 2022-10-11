@@ -42,12 +42,23 @@ function App() {
   );
 }
 
-const date = new Date();
+
+//Props is basically an object , when we compile this component it creates an object
+// In that object will look like below
+// And the whole element object is this
+// element = {
+//   type: 'h1',
+//   props: {
+//     locale: "bn-BD" //When you set locale ="bn-BD"
+//   }, // In props will create more method of object if you set them in the render area
+// }
+
 //Clock Component
-function Clock ({locale}){
+function Clock (props){
+  console.log(new Date().toLocaleTimeString());
   return (
     <div>
-      <h2>Time is: {date.toLocaleTimeString(locale)}</h2>
+      <h2>Time is: {new Date().toLocaleTimeString(props.locale)}</h2>
     </div>)
 }
 // Fetch data from JSONplaceholder5
