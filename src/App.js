@@ -17,6 +17,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Clock locale="bn-BD"></Clock>
+        <Clock locale="en-UK"></Clock>
         <Users></Users>
         <Counter></Counter>
         <ul>
@@ -40,6 +42,14 @@ function App() {
   );
 }
 
+const date = new Date();
+//Clock Component
+function Clock ({locale}){
+  return (
+    <div>
+      <h2>Time is: {date.toLocaleTimeString(locale)}</h2>
+    </div>)
+}
 // Fetch data from JSONplaceholder5
 function Users(){
  const [users, setUsers] = useState([]);
