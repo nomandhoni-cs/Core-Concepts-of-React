@@ -19,7 +19,13 @@ function App() {
       <header className="App-header">
         <Clock locale="bn-BD"></Clock>
         <Clock locale="en-UK"></Clock>
-        <ClockDisplay locale="bn-BD"></ClockDisplay>  
+        <ClockDisplay locale="bn-BD">
+          Something
+          {
+          /* Something will be the children of that rendered object  */
+          /*this.props.children  like this*/
+          }
+          </ClockDisplay>  
         <ClockDisplay locale="en-US"></ClockDisplay>  
         <Users></Users>
         <Counter></Counter>
@@ -50,7 +56,7 @@ function App() {
 class ClockDisplay extends React.Component{
   render() {
     return (
-      <h2>The Time is <span>{new Date().toLocaleTimeString(this.props.locale)}</span></h2>
+      <h2>The Time is <span>{new Date().toLocaleTimeString(this.props.locale)} - {this.props.children}</span></h2>
     )
   }
 }
